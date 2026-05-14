@@ -5,7 +5,7 @@
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <title>תחלופת עובדים במוקד השירות של YES</title>
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700;900&family=Heebo:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700;800;900&family=Heebo:wght@300;400;500;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
 
   <script id="tailwind-config">
@@ -44,6 +44,23 @@
             "inverse-primary": "#5f5e5e",
             "on-error": "#690005",
             "primary-fixed": "#e5e2e1",
+            "on-secondary-fixed": "#001e2d",
+            "on-secondary": "#00344b",
+            "surface-dim": "#141313",
+            "tertiary-fixed-dim": "#c7c5d3",
+            "tertiary-container": "#090913",
+            "error-container": "#93000a",
+            "on-tertiary": "#302f3b",
+            "inverse-on-surface": "#313030",
+            "on-primary-fixed": "#1c1b1b",
+            "on-secondary-fixed-variant": "#004c6b",
+            "on-tertiary-fixed": "#1b1b25",
+            "on-tertiary-container": "#797885",
+            "tertiary-fixed": "#e4e1f0",
+            "on-error-container": "#ffdad6",
+            "on-primary-fixed-variant": "#474646",
+            "on-tertiary-fixed-variant": "#464652",
+            "primary-fixed-dim": "#c9c6c5",
           },
           borderRadius: {
             "DEFAULT": "0.125rem",
@@ -67,12 +84,12 @@
             "headline-md": ["Assistant"]
           },
           fontSize: {
-            "body-lg":          ["18px", { lineHeight: "1.6",  fontWeight: "400" }],
-            "label-sm":         ["12px", { lineHeight: "1.0",  letterSpacing: "0.05em", fontWeight: "500" }],
-            "body-md":          ["16px", { lineHeight: "1.5",  fontWeight: "400" }],
-            "display-lg":       ["48px", { lineHeight: "1.1",  letterSpacing: "-0.02em", fontWeight: "700" }],
-            "display-lg-mobile":["32px", { lineHeight: "1.2",  fontWeight: "700" }],
-            "headline-md":      ["24px", { lineHeight: "1.3",  fontWeight: "600" }]
+            "body-lg":           ["18px", { lineHeight: "1.6",  fontWeight: "400" }],
+            "label-sm":          ["12px", { lineHeight: "1.0",  letterSpacing: "0.05em", fontWeight: "500" }],
+            "body-md":           ["16px", { lineHeight: "1.5",  fontWeight: "400" }],
+            "display-lg":        ["48px", { lineHeight: "1.1",  letterSpacing: "-0.02em", fontWeight: "700" }],
+            "display-lg-mobile": ["32px", { lineHeight: "1.2",  fontWeight: "700" }],
+            "headline-md":       ["24px", { lineHeight: "1.3",  fontWeight: "600" }]
           }
         }
       }
@@ -85,8 +102,6 @@
       color: #e5e2e1;
       overflow-x: hidden;
     }
-
-    /* Navigation smooth scroll */
     html { scroll-behavior: smooth; }
 
     /* Glass card */
@@ -102,24 +117,17 @@
     }
 
     /* Blue glow text */
-    .blue-glow {
-      text-shadow: 0 0 10px rgba(0, 174, 239, 0.6);
-    }
+    .blue-glow { text-shadow: 0 0 10px rgba(0, 174, 239, 0.6); }
 
-    /* Signal wave SVG behind hero */
+    /* Signal wave SVG */
     .signal-wave {
       position: absolute;
-      top: 50%;
-      left: 50%;
+      top: 50%; left: 50%;
       transform: translate(-50%, -50%);
-      width: 100%;
-      height: 100%;
-      z-index: 0;
-      opacity: 0.1;
+      width: 100%; height: 100%;
+      z-index: 0; opacity: 0.1;
       pointer-events: none;
     }
-
-    /* Animated pulse on circles */
     @keyframes pulse-ring {
       0%   { opacity: 0.15; transform: scale(1); }
       50%  { opacity: 0.08; transform: scale(1.04); }
@@ -129,420 +137,906 @@
     .signal-wave circle:nth-child(2) { animation-delay: 0.8s; }
     .signal-wave circle:nth-child(3) { animation-delay: 1.6s; }
 
-    /* Section anchor offset for fixed header */
     section[id] { scroll-margin-top: 80px; }
+
+    /* Electric glow box-shadow */
+    .electric-glow { box-shadow: 0 0 20px rgba(0, 174, 239, 0.15); }
+
+    /* Gradient separator lines */
+    .article-gradient-line {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(0, 174, 239, 0.2), transparent);
+    }
+    .line-fade {
+      background: linear-gradient(90deg, transparent, rgba(0, 174, 239, 0.2), transparent);
+      height: 1px; width: 100%;
+    }
+    .fading-line {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(0, 171, 236, 0.2), transparent);
+    }
+
+    /* Orbit decoration circles */
+    .orbit-decoration {
+      position: absolute;
+      border: 1px dashed rgba(0, 174, 239, 0.1);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    /* Hero gradient for theories page */
+    .hero-gradient {
+      background: radial-gradient(circle at top right, rgba(0, 171, 236, 0.1) 0%, transparent 40%),
+                  radial-gradient(circle at bottom left, rgba(0, 171, 236, 0.05) 0%, transparent 40%);
+    }
+
+    /* Theory icon backgrounds */
+    .theory-icon-bg {
+      background: radial-gradient(circle, rgba(0, 171, 236, 0.15) 0%, transparent 70%);
+    }
+
+    /* Glow border hover */
+    .glow-border:hover {
+      box-shadow: 0 0 20px rgba(0, 174, 239, 0.15);
+      border-color: rgba(0, 174, 239, 0.6);
+    }
+
+    /* Geometric background pattern */
+    .geometric-bg {
+      background-image: radial-gradient(circle at 2px 2px, rgba(0, 174, 239, 0.05) 1px, transparent 0);
+      background-size: 40px 40px;
+    }
+
+    /* Scrollbar */
+    .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+    .custom-scrollbar::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); }
+    .custom-scrollbar::-webkit-scrollbar-thumb { background: #00abec; border-radius: 10px; }
+
+    /* Mobile menu */
+    #mobile-menu {
+      display: none;
+    }
+    #mobile-menu.open {
+      display: flex;
+    }
   </style>
 </head>
 
-<body class="font-body-md text-body-md">
+<body class="font-body-md text-body-md selection:bg-secondary/30">
 
   <!-- ═══════════════════════════════════════════
-       TOP NAVIGATION
+       HEADER — אחיד לכל הדפים (לפי דף הבית)
   ════════════════════════════════════════════ -->
   <header class="fixed top-0 w-full z-50 h-20 bg-background/60 backdrop-blur-md border-b border-secondary/30 shadow-[0_0_20px_rgba(0,174,239,0.15)]">
+    <div class="relative flex items-center justify-center h-full px-margin-mobile md:px-margin-desktop">
 
-  <div class="relative flex items-center justify-center h-full px-margin-mobile md:px-margin-desktop">
+      <!-- LEFT BRAND -->
+      <div class="absolute left-0 md:left-margin-desktop flex items-center h-full px-margin-mobile md:px-0">
+        <span style="font-family: Assistant, sans-serif; font-weight: 900; letter-spacing: -0.05em;"
+              class="text-display-lg-mobile text-secondary hidden md:block uppercase">
+          YES WE CAN
+        </span>
+        <span style="font-family: Assistant, sans-serif; font-weight: 900; letter-spacing: -0.05em;"
+              class="text-2xl text-secondary md:hidden uppercase">
+          YES
+        </span>
+      </div>
 
-    <!-- LEFT BRAND -->
-    <div class="absolute left-0 md:left-margin-desktop flex items-center h-full">
-      <span
-        style="font-family: Assistant, sans-serif; font-weight: 900; letter-spacing: -0.05em;"
-        class="text-display-lg-mobile text-secondary hidden md:block uppercase">
-        YES WE CAN
-      </span>
+      <!-- CENTER NAVIGATION (desktop) -->
+      <nav class="hidden md:flex flex-row-reverse gap-8 items-center">
+        <a href="#" data-page="home"
+           class="nav-link text-secondary border-b-2 border-secondary pb-1 font-headline-md text-headline-md">
+           ראשי
+        </a>
+        <a href="#" data-page="challenge"
+           class="nav-link text-on-surface-variant hover:text-secondary transition-colors font-headline-md text-headline-md">
+           האתגר
+        </a>
+        <a href="#" data-page="theories"
+           class="nav-link text-on-surface-variant hover:text-secondary transition-colors font-headline-md text-headline-md">
+           תאוריות
+        </a>
+        <a href="#" data-page="solution"
+           class="nav-link text-on-surface-variant hover:text-secondary transition-colors font-headline-md text-headline-md">
+           הפתרון
+        </a>
+        <a href="#" data-page="ai"
+           class="nav-link text-on-surface-variant hover:text-secondary transition-colors font-headline-md text-headline-md">
+           בינה מלאכותית
+        </a>
+      </nav>
+
+      <!-- MOBILE MENU BUTTON -->
+      <button id="mobile-menu-btn" class="md:hidden absolute left-margin-mobile text-secondary" aria-label="תפריט">
+        <span class="material-symbols-outlined text-3xl">menu</span>
+      </button>
     </div>
 
-    <!-- CENTER NAVIGATION -->
-    <nav class="hidden md:flex flex-row-reverse gap-8 items-center">
-      <a href="#hero"
-         class="text-secondary border-b-2 border-secondary pb-1 font-headline-md text-headline-md">
-         ראשי
-      </a>
-
-      <a href="#problem"
-         class="text-on-surface-variant hover:text-secondary transition-colors font-headline-md text-headline-md">
-         האתגר
-      </a>
-
-      <a href="#theories"
-         class="text-on-surface-variant hover:text-secondary transition-colors font-headline-md text-headline-md">
-         תאוריות
-      </a>
-
-      <a href="#solution"
-         class="text-on-surface-variant hover:text-secondary transition-colors font-headline-md text-headline-md">
-         הפתרון
-      </a>
-
-      <a href="#ai"
-         class="text-on-surface-variant hover:text-secondary transition-colors font-headline-md text-headline-md">
-         בינה מלאכותית
-      </a>
-    </nav>
-
-    <!-- MOBILE MENU -->
-    <button class="md:hidden mr-auto text-secondary" aria-label="תפריט">
-      <span class="material-symbols-outlined text-3xl">menu</span>
-    </button>
-
-  </div>
-
-</header>
-
-  <main class="pt-20">
-
-    <!-- ═══════════════════════════════════════════
-         HERO SECTION
-    ════════════════════════════════════════════ -->
-    <section id="hero"
-             class="relative min-h-[80vh] flex flex-col items-center justify-center text-center px-margin-mobile overflow-hidden"
-             style="background: linear-gradient(rgba(20,19,19,0.85), rgba(20,19,19,0.85)),
-                    url('https://images.unsplash.com/photo-1521791136064-7986c2920216?w=1600&q=80') center/cover no-repeat;">
-
-      <!-- Animated signal rings -->
-      <div class="signal-wave" aria-hidden="true">
-        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" class="w-full h-full text-secondary">
-          <circle cx="100" cy="100" r="40"  fill="none" stroke="currentColor" stroke-width="0.5"/>
-          <circle cx="100" cy="100" r="65"  fill="none" stroke="currentColor" stroke-width="0.5"/>
-          <circle cx="100" cy="100" r="90"  fill="none" stroke="currentColor" stroke-width="0.5"/>
-          <path d="M100 10 L100 190 M10 100 L190 100" stroke="currentColor" stroke-width="0.2"/>
-        </svg>
-      </div>
-
-      <!-- YES Logo text -->
-<div class="relative z-10 mb-8">
-  <span
-    style="font-family:Assistant,sans-serif;font-weight:900;font-size:4rem;letter-spacing:-0.05em;"
-    class="text-secondary blue-glow">
-    YES
-  </span>
-</div>
-
-      <h1 class="relative z-10 font-display-lg text-display-lg-mobile md:text-display-lg mb-6 text-on-surface leading-tight max-w-3xl">
-        תחלופת עובדים במוקד השירות של YES
-      </h1>
-
-      <p class="relative z-10 font-headline-md text-secondary blue-glow max-w-2xl mx-auto text-headline-md">
-        ניהול אקדמי וניתוח אסטרטגי של שימור הון אנושי בעידן הטכנולוגי
-      </p>
-
-      <!-- Scroll hint -->
-      <a href="#problem" class="relative z-10 mt-14 flex flex-col items-center gap-2 text-on-surface-variant hover:text-secondary transition-colors" aria-label="גלול מטה">
-        <span class="text-label-sm">גלול לגילוי</span>
-        <span class="material-symbols-outlined animate-bounce">expand_more</span>
-      </a>
-    </section>
-
-    <!-- ═══════════════════════════════════════════
-         PROBLEM SECTION
-    ════════════════════════════════════════════ -->
-    <section id="problem" class="py-20 px-margin-mobile max-w-container-max mx-auto">
-      <div class="glass-card border-r-4 border-r-secondary p-8 md:p-12 flex flex-col md:flex-row items-center gap-12">
-
-        <div class="flex-1">
-          <div class="flex items-center gap-4 mb-6">
-            <span class="material-symbols-outlined text-secondary text-5xl">person_remove</span>
-            <h2 class="font-headline-md text-headline-md text-on-surface">האתגר המרכזי</h2>
-          </div>
-          <p class="font-body-lg text-body-lg text-on-surface-variant mb-8">
-            מוקדי השירות של חברת YES מתמודדים עם אתגר משמעותי של עזיבת עובדים בטרם עת.
-            תופעה זו יוצרת פגיעה ברציפות השירות ומעלה משמעותית את עלויות הגיוס וההכשרה.
-            שורש הבעיה אינו בשכר — אלא בהיעדר משמעות, אחריות והזדמנות לצמיחה.
-          </p>
-
-          <!-- Key stats -->
-          <div class="grid grid-cols-3 gap-6">
-            <div class="text-center">
-              <div class="font-display-lg text-display-lg text-secondary leading-none">18</div>
-              <div class="font-label-sm text-label-sm text-on-surface-variant mt-1">חודשים ממוצע</div>
-            </div>
-            <div class="text-center">
-              <div class="font-display-lg text-display-lg text-secondary leading-none">↑</div>
-              <div class="font-label-sm text-label-sm text-on-surface-variant mt-1">עלויות הכשרה</div>
-            </div>
-            <div class="text-center">
-              <div class="font-display-lg text-display-lg text-secondary leading-none">↓</div>
-              <div class="font-label-sm text-label-sm text-on-surface-variant mt-1">שביעות רצון</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Decorative SVG -->
-        <div class="w-full md:w-1/3 flex justify-center opacity-30" aria-hidden="true">
-          <svg width="180" height="180" viewBox="0 0 100 100" class="text-secondary">
-            <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-dasharray="3 3" stroke-width="1"/>
-            <path d="M50 10 L50 90 M10 50 L90 50" stroke="currentColor" stroke-width="0.5"/>
-            <circle cx="50" cy="50" r="2" fill="currentColor"/>
-          </svg>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══════════════════════════════════════════
-         THEORIES COMPARISON
-    ════════════════════════════════════════════ -->
-    <section id="theories" class="py-20 px-margin-mobile max-w-container-max mx-auto">
-      <h2 class="text-center font-display-lg text-display-lg-mobile md:text-display-lg mb-4 text-on-surface">
-        השוואת מודלים תיאורטיים
-      </h2>
-      <p class="text-center text-on-surface-variant font-headline-md text-headline-md mb-12">
-        שתי תאוריות מרכזיות — ניתוח ובחירה מנומקת
-      </p>
-
-      <div class="grid md:grid-cols-2 gap-gutter">
-
-        <!-- Herzberg — CHOSEN -->
-        <div class="glass-card overflow-hidden flex flex-col border-secondary/60">
-          <div class="bg-secondary h-1 w-full"></div>
-          <div class="p-8 flex-1">
-            <div class="flex items-center justify-between mb-2">
-              <h3 class="font-headline-md text-headline-md text-secondary">מודל הרצברג</h3>
-              <span class="material-symbols-outlined text-secondary text-3xl">psychology</span>
-            </div>
-            <span class="inline-block text-label-sm text-label-sm bg-secondary/20 text-secondary px-3 py-1 rounded-full mb-4">
-              ✓ הבחירה המומלצת
-            </span>
-            <p class="font-body-md text-body-md text-on-surface-variant mb-6">
-              תיאוריית שני הגורמים: גורמים היגייניים (תנאי עבודה, שכר) — מונעים תסכול בלבד.
-              גורמים מוטיבטורים (הישגים, הכרה, אחריות) — יוצרים מוטיבציה אמיתית.
-            </p>
-            <ul class="space-y-3">
-              <li class="flex items-start gap-3">
-                <span class="material-symbols-outlined text-secondary text-sm mt-1">check_circle</span>
-                <span class="text-body-md">התמקדות בתוכן העבודה עצמו</span>
-              </li>
-              <li class="flex items-start gap-3">
-                <span class="material-symbols-outlined text-secondary text-sm mt-1">check_circle</span>
-                <span class="text-body-md">דגש על הכרה, הישגים ואחריות</span>
-              </li>
-              <li class="flex items-start gap-3">
-                <span class="material-symbols-outlined text-secondary text-sm mt-1">check_circle</span>
-                <span class="text-body-md">ישים ברמת ניהול המוקד — ללא תקציב גדול</span>
-              </li>
-              <li class="flex items-start gap-3">
-                <span class="material-symbols-outlined text-secondary text-sm mt-1">check_circle</span>
-                <span class="text-body-md">מתאים לסביבה טיילוריסטית (מוקד שיחות)</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- Vroom — NOT CHOSEN -->
-        <div class="glass-card overflow-hidden flex flex-col opacity-60">
-          <div class="bg-outline/30 h-1 w-full"></div>
-          <div class="p-8 flex-1">
-            <div class="flex items-center justify-between mb-2">
-              <h3 class="font-headline-md text-headline-md text-on-surface">מודל ורום (Vroom)</h3>
-              <span class="material-symbols-outlined text-on-surface-variant text-3xl">trending_up</span>
-            </div>
-            <span class="inline-block text-label-sm text-label-sm bg-outline/20 text-on-surface-variant px-3 py-1 rounded-full mb-4">
-              תאוריה משלימה
-            </span>
-            <p class="font-body-md text-body-md text-on-surface-variant mb-6">
-              תיאוריית הציפייה: מוטיבציה = E × I × V.
-              ציפייה להצלחה, קשר שקוף לתגמול, וערך התגמול עבור העובד.
-            </p>
-            <ul class="space-y-3">
-              <li class="flex items-start gap-3">
-                <span class="material-symbols-outlined text-on-surface-variant text-sm mt-1">radio_button_unchecked</span>
-                <span class="text-body-md">חישוב רציונלי של תועלת</span>
-              </li>
-              <li class="flex items-start gap-3">
-                <span class="material-symbols-outlined text-on-surface-variant text-sm mt-1">radio_button_unchecked</span>
-                <span class="text-body-md">תפיסת המסוגלות האישית (E)</span>
-              </li>
-              <li class="flex items-start gap-3">
-                <span class="material-symbols-outlined text-on-surface-variant text-sm mt-1">radio_button_unchecked</span>
-                <span class="text-body-md">מורכב ליישום — דורש התאמה אישית</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══════════════════════════════════════════
-         THEORY SELECTION
-    ════════════════════════════════════════════ -->
-    <section class="py-20 bg-surface-container-low">
-      <div class="max-w-container-max mx-auto px-margin-mobile">
-        <div class="glass-card p-10 md:p-14 border-2 border-secondary shadow-[0_0_40px_rgba(0,174,239,0.2)] relative overflow-hidden">
-
-          <!-- Glow blob -->
-          <div class="absolute -top-16 -left-16 w-56 h-56 bg-secondary/5 rounded-full blur-3xl pointer-events-none" aria-hidden="true"></div>
-
-          <div class="relative z-10 flex flex-col md:flex-row items-center gap-12">
-            <div class="flex-1">
-              <div class="inline-block px-4 py-1 bg-secondary/20 text-secondary rounded-full text-label-sm text-label-sm mb-4">
-                הבחירה המומלצת
-              </div>
-              <h2 class="font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface mb-6">
-                למה בחרנו במודל הרצברג?
-              </h2>
-              <p class="font-body-lg text-body-lg text-on-surface-variant mb-8">
-                ניתוח הממצאים ב-YES מראה כי העלאת שכר לבדה אינה מונעת עזיבה.
-                הנציגים מחפשים משמעות, גיוון ואופק התפתחותי — בדיוק מה שהרצברג מזהה כגורמים מוטיבטורים אמיתיים.
-              </p>
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div class="flex items-center gap-3">
-                  <span class="material-symbols-outlined text-secondary">verified</span>
-                  <span class="text-body-md">שיפור חוויית העובד הפנימית</span>
-                </div>
-                <div class="flex items-center gap-3">
-                  <span class="material-symbols-outlined text-secondary">verified</span>
-                  <span class="text-body-md">צמצום שחיקה רגשית</span>
-                </div>
-                <div class="flex items-center gap-3">
-                  <span class="material-symbols-outlined text-secondary">verified</span>
-                  <span class="text-body-md">העשרה עיסוקית מבוססת תוכן</span>
-                </div>
-                <div class="flex items-center gap-3">
-                  <span class="material-symbols-outlined text-secondary">verified</span>
-                  <span class="text-body-md">יצירת זהות ארגונית חזקה</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Big icon -->
-            <div class="text-secondary opacity-80" aria-hidden="true">
-              <span class="material-symbols-outlined" style="font-size: 120px;">task_alt</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══════════════════════════════════════════
-         SOLUTION SECTION
-    ════════════════════════════════════════════ -->
-    <section id="solution" class="py-20 px-margin-mobile max-w-container-max mx-auto">
-      <div class="text-center mb-14">
-        <h2 class="font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface mb-3">
-          תכנית העשרת העיסוק
-        </h2>
-        <p class="font-headline-md text-headline-md text-on-surface-variant">
-          חמישה עוגנים לשימור עובדים — מבוסס על הרצברג
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-gutter">
-
-        <div class="glass-card p-6 flex flex-col items-center text-center group">
-          <span class="material-symbols-outlined text-secondary text-4xl mb-4 group-hover:scale-110 transition-transform">hub</span>
-          <h4 class="font-headline-md text-headline-md text-on-surface mb-2">גיוון מיומנויות</h4>
-          <p class="text-label-sm text-label-sm text-on-surface-variant">שילוב משימות בקרה לצד מענה טלפוני</p>
-        </div>
-
-        <div class="glass-card p-6 flex flex-col items-center text-center group">
-          <span class="material-symbols-outlined text-secondary text-4xl mb-4 group-hover:scale-110 transition-transform">assignment_ind</span>
-          <h4 class="font-headline-md text-headline-md text-on-surface mb-2">זהות המשימה</h4>
-          <p class="text-label-sm text-label-sm text-on-surface-variant">טיפול בלקוח מקצה לקצה</p>
-        </div>
-
-        <div class="glass-card p-6 flex flex-col items-center text-center group">
-          <span class="material-symbols-outlined text-secondary text-4xl mb-4 group-hover:scale-110 transition-transform">stars</span>
-          <h4 class="font-headline-md text-headline-md text-on-surface mb-2">חשיבות המשימה</h4>
-          <p class="text-label-sm text-label-sm text-on-surface-variant">הבנת השפעת השירות על חוויית הצפייה</p>
-        </div>
-
-        <div class="glass-card p-6 flex flex-col items-center text-center group">
-          <span class="material-symbols-outlined text-secondary text-4xl mb-4 group-hover:scale-110 transition-transform">self_improvement</span>
-          <h4 class="font-headline-md text-headline-md text-on-surface mb-2">אוטונומיה</h4>
-          <p class="text-label-sm text-label-sm text-on-surface-variant">מתן חופש פעולה בפתרון בעיות</p>
-        </div>
-
-        <div class="glass-card p-6 flex flex-col items-center text-center group">
-          <span class="material-symbols-outlined text-secondary text-4xl mb-4 group-hover:scale-110 transition-transform">quick_phrases</span>
-          <h4 class="font-headline-md text-headline-md text-on-surface mb-2">משוב</h4>
-          <p class="text-label-sm text-label-sm text-on-surface-variant">מערכות דירוג בזמן אמת</p>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ═══════════════════════════════════════════
-         AI SECTION
-    ════════════════════════════════════════════ -->
-    <section id="ai" class="py-20 px-margin-mobile max-w-container-max mx-auto">
-      <h2 class="text-center font-display-lg text-display-lg-mobile md:text-display-lg mb-4 text-on-surface">
-        שילוב בינה מלאכותית (AI) בתהליך
-      </h2>
-      <p class="text-center text-on-surface-variant font-headline-md text-headline-md mb-16">
-        ארבעה שלבים שבהם AI סייע — ואיפה הבקרה האנושית נכנסה
-      </p>
-
-      <div class="relative">
-        <!-- Timeline line (desktop) -->
-        <div class="absolute top-8 left-0 w-full h-px bg-secondary/30 hidden md:block" aria-hidden="true"></div>
-
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-gutter relative z-10">
-
-          <div class="flex flex-col items-center text-center">
-            <div class="w-16 h-16 rounded-full bg-surface-container-highest border border-secondary flex items-center justify-center mb-6 shadow-[0_0_15px_rgba(0,174,239,0.3)]">
-              <span class="material-symbols-outlined text-secondary">analytics</span>
-            </div>
-            <h4 class="font-headline-md text-headline-md text-on-surface mb-2">גיבוש הבעיה</h4>
-            <p class="text-on-surface-variant text-label-sm text-label-sm">AI שימש כ"לוח שיחה" לחידוד הגדרת הבעיה</p>
-          </div>
-
-          <div class="flex flex-col items-center text-center">
-            <div class="w-16 h-16 rounded-full bg-surface-container-highest border border-secondary flex items-center justify-center mb-6 shadow-[0_0_15px_rgba(0,174,239,0.3)]">
-              <span class="material-symbols-outlined text-secondary">smart_toy</span>
-            </div>
-            <h4 class="font-headline-md text-headline-md text-on-surface mb-2">בחינת תאוריות</h4>
-            <p class="text-on-surface-variant text-label-sm text-label-sm">AI סייע בסינון תאוריות רלוונטיות מהחומר</p>
-          </div>
-
-          <div class="flex flex-col items-center text-center">
-            <div class="w-16 h-16 rounded-full bg-surface-container-highest border border-secondary flex items-center justify-center mb-6 shadow-[0_0_15px_rgba(0,174,239,0.3)]">
-              <span class="material-symbols-outlined text-secondary">school</span>
-            </div>
-            <h4 class="font-headline-md text-headline-md text-on-surface mb-2">הצדקת הבחירה</h4>
-            <p class="text-on-surface-variant text-label-sm text-label-sm">AI עזר לנסח טיעונים — נבחנו ביקורתית</p>
-          </div>
-
-          <div class="flex flex-col items-center text-center">
-            <div class="w-16 h-16 rounded-full bg-surface-container-highest border border-secondary flex items-center justify-center mb-6 shadow-[0_0_15px_rgba(0,174,239,0.3)]">
-              <span class="material-symbols-outlined text-secondary">support_agent</span>
-            </div>
-            <h4 class="font-headline-md text-headline-md text-on-surface mb-2">בניית פתרון</h4>
-            <p class="text-on-surface-variant text-label-sm text-label-sm">רעיונות ל-Job Enrichment — הותאמו ידנית</p>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- AI disclaimer note -->
-      <div class="mt-14 glass-card p-6 flex items-start gap-4">
-        <span class="material-symbols-outlined text-secondary text-2xl mt-1 shrink-0">info</span>
-        <p class="text-body-md text-on-surface-variant">
-          <strong class="text-on-surface">בקרה אנושית:</strong>
-          כל תוצר AI נבחן ביחס לסיכום הקורס. רק מושגים מהחומר הנלמד נותרו.
-          הניתוח הסופי, הצדקת הבחירה והפתרון היישומי — נכתבו ידנית על ידי הקבוצה.
-        </p>
-      </div>
-    </section>
-
-  </main>
+    <!-- MOBILE DROPDOWN -->
+    <div id="mobile-menu" class="md:hidden flex-col bg-background/95 backdrop-blur-md border-b border-secondary/30 py-4 px-margin-mobile gap-4">
+      <a href="#" data-page="home"      class="nav-link mobile-nav block py-2 text-secondary border-r-2 border-secondary pr-3 font-headline-md text-headline-md">ראשי</a>
+      <a href="#" data-page="challenge" class="nav-link mobile-nav block py-2 text-on-surface-variant hover:text-secondary transition-colors pr-3 font-headline-md text-headline-md">האתגר</a>
+      <a href="#" data-page="theories"  class="nav-link mobile-nav block py-2 text-on-surface-variant hover:text-secondary transition-colors pr-3 font-headline-md text-headline-md">תאוריות</a>
+      <a href="#" data-page="solution"  class="nav-link mobile-nav block py-2 text-on-surface-variant hover:text-secondary transition-colors pr-3 font-headline-md text-headline-md">הפתרון</a>
+      <a href="#" data-page="ai"        class="nav-link mobile-nav block py-2 text-on-surface-variant hover:text-secondary transition-colors pr-3 font-headline-md text-headline-md">בינה מלאכותית</a>
+    </div>
+  </header>
 
   <!-- ═══════════════════════════════════════════
-       FOOTER
+       דף הבית
+  ════════════════════════════════════════════ -->
+  <div id="page-home">
+    <main class="pt-20">
+
+      <!-- HERO -->
+      <section id="hero"
+               class="relative min-h-[80vh] flex flex-col items-center justify-center text-center px-margin-mobile overflow-hidden"
+               style="background: linear-gradient(rgba(20,19,19,0.85), rgba(20,19,19,0.85)),
+                      url('https://images.unsplash.com/photo-1521791136064-7986c2920216?w=1600&q=80') center/cover no-repeat;">
+        <div class="signal-wave" aria-hidden="true">
+          <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" class="w-full h-full text-secondary">
+            <circle cx="100" cy="100" r="40"  fill="none" stroke="currentColor" stroke-width="0.5"/>
+            <circle cx="100" cy="100" r="65"  fill="none" stroke="currentColor" stroke-width="0.5"/>
+            <circle cx="100" cy="100" r="90"  fill="none" stroke="currentColor" stroke-width="0.5"/>
+            <path d="M100 10 L100 190 M10 100 L190 100" stroke="currentColor" stroke-width="0.2"/>
+          </svg>
+        </div>
+        <div class="relative z-10 mb-8">
+          <span style="font-family:Assistant,sans-serif;font-weight:900;font-size:4rem;letter-spacing:-0.05em;"
+                class="text-secondary blue-glow">YES</span>
+        </div>
+        <h1 class="relative z-10 font-display-lg text-display-lg-mobile md:text-display-lg mb-6 text-on-surface leading-tight max-w-3xl">
+          תחלופת עובדים במוקד השירות של YES
+        </h1>
+        <p class="relative z-10 font-headline-md text-secondary blue-glow max-w-2xl mx-auto text-headline-md">
+          ניהול אקדמי וניתוח אסטרטגי של שימור הון אנושי בעידן הטכנולוגי
+        </p>
+        <button onclick="showPage('challenge')" class="relative z-10 mt-14 flex flex-col items-center gap-2 text-on-surface-variant hover:text-secondary transition-colors" aria-label="גלול מטה">
+          <span class="text-label-sm">גלול לגילוי</span>
+          <span class="material-symbols-outlined animate-bounce">expand_more</span>
+        </button>
+      </section>
+
+      <!-- PROBLEM -->
+      <section id="problem" class="py-20 px-margin-mobile max-w-container-max mx-auto">
+        <div class="glass-card border-r-4 border-r-secondary p-8 md:p-12 flex flex-col md:flex-row items-center gap-12">
+          <div class="flex-1">
+            <div class="flex items-center gap-4 mb-6">
+              <span class="material-symbols-outlined text-secondary text-5xl">person_remove</span>
+              <h2 class="font-headline-md text-headline-md text-on-surface">האתגר המרכזי</h2>
+            </div>
+            <p class="font-body-lg text-body-lg text-on-surface-variant mb-8">
+              מוקדי השירות של חברת YES מתמודדים עם אתגר משמעותי של עזיבת עובדים בטרם עת.
+              תופעה זו יוצרת פגיעה ברציפות השירות ומעלה משמעותית את עלויות הגיוס וההכשרה.
+              שורש הבעיה אינו בשכר — אלא בהיעדר משמעות, אחריות והזדמנות לצמיחה.
+            </p>
+            <div class="grid grid-cols-3 gap-6">
+              <div class="text-center">
+                <div class="font-display-lg text-display-lg text-secondary leading-none">18</div>
+                <div class="font-label-sm text-label-sm text-on-surface-variant mt-1">חודשים ממוצע</div>
+              </div>
+              <div class="text-center">
+                <div class="font-display-lg text-display-lg text-secondary leading-none">↑</div>
+                <div class="font-label-sm text-label-sm text-on-surface-variant mt-1">עלויות הכשרה</div>
+              </div>
+              <div class="text-center">
+                <div class="font-display-lg text-display-lg text-secondary leading-none">↓</div>
+                <div class="font-label-sm text-label-sm text-on-surface-variant mt-1">שביעות רצון</div>
+              </div>
+            </div>
+          </div>
+          <div class="w-full md:w-1/3 flex justify-center opacity-30" aria-hidden="true">
+            <svg width="180" height="180" viewBox="0 0 100 100" class="text-secondary">
+              <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-dasharray="3 3" stroke-width="1"/>
+              <path d="M50 10 L50 90 M10 50 L90 50" stroke="currentColor" stroke-width="0.5"/>
+              <circle cx="50" cy="50" r="2" fill="currentColor"/>
+            </svg>
+          </div>
+        </div>
+      </section>
+
+      <!-- THEORIES COMPARISON -->
+      <section id="theories" class="py-20 px-margin-mobile max-w-container-max mx-auto">
+        <h2 class="text-center font-display-lg text-display-lg-mobile md:text-display-lg mb-4 text-on-surface">
+          השוואת מודלים תיאורטיים
+        </h2>
+        <p class="text-center text-on-surface-variant font-headline-md text-headline-md mb-12">
+          שתי תאוריות מרכזיות — ניתוח ובחירה מנומקת
+        </p>
+        <div class="grid md:grid-cols-2 gap-gutter">
+          <div class="glass-card overflow-hidden flex flex-col border-secondary/60">
+            <div class="bg-secondary h-1 w-full"></div>
+            <div class="p-8 flex-1">
+              <div class="flex items-center justify-between mb-2">
+                <h3 class="font-headline-md text-headline-md text-secondary">מודל הרצברג</h3>
+                <span class="material-symbols-outlined text-secondary text-3xl">psychology</span>
+              </div>
+              <span class="inline-block text-label-sm text-label-sm bg-secondary/20 text-secondary px-3 py-1 rounded-full mb-4">✓ הבחירה המומלצת</span>
+              <p class="font-body-md text-body-md text-on-surface-variant mb-6">
+                תיאוריית שני הגורמים: גורמים היגייניים (תנאי עבודה, שכר) — מונעים תסכול בלבד.
+                גורמים מוטיבטורים (הישגים, הכרה, אחריות) — יוצרים מוטיבציה אמיתית.
+              </p>
+              <ul class="space-y-3">
+                <li class="flex items-start gap-3"><span class="material-symbols-outlined text-secondary text-sm mt-1">check_circle</span><span class="text-body-md">התמקדות בתוכן העבודה עצמו</span></li>
+                <li class="flex items-start gap-3"><span class="material-symbols-outlined text-secondary text-sm mt-1">check_circle</span><span class="text-body-md">דגש על הכרה, הישגים ואחריות</span></li>
+                <li class="flex items-start gap-3"><span class="material-symbols-outlined text-secondary text-sm mt-1">check_circle</span><span class="text-body-md">ישים ברמת ניהול המוקד — ללא תקציב גדול</span></li>
+                <li class="flex items-start gap-3"><span class="material-symbols-outlined text-secondary text-sm mt-1">check_circle</span><span class="text-body-md">מתאים לסביבה טיילוריסטית (מוקד שיחות)</span></li>
+              </ul>
+            </div>
+          </div>
+          <div class="glass-card overflow-hidden flex flex-col opacity-60">
+            <div class="bg-outline/30 h-1 w-full"></div>
+            <div class="p-8 flex-1">
+              <div class="flex items-center justify-between mb-2">
+                <h3 class="font-headline-md text-headline-md text-on-surface">מודל ורום (Vroom)</h3>
+                <span class="material-symbols-outlined text-on-surface-variant text-3xl">trending_up</span>
+              </div>
+              <span class="inline-block text-label-sm text-label-sm bg-outline/20 text-on-surface-variant px-3 py-1 rounded-full mb-4">תאוריה משלימה</span>
+              <p class="font-body-md text-body-md text-on-surface-variant mb-6">
+                תיאוריית הציפייה: מוטיבציה = E × I × V.
+                ציפייה להצלחה, קשר שקוף לתגמול, וערך התגמול עבור העובד.
+              </p>
+              <ul class="space-y-3">
+                <li class="flex items-start gap-3"><span class="material-symbols-outlined text-on-surface-variant text-sm mt-1">radio_button_unchecked</span><span class="text-body-md">חישוב רציונלי של תועלת</span></li>
+                <li class="flex items-start gap-3"><span class="material-symbols-outlined text-on-surface-variant text-sm mt-1">radio_button_unchecked</span><span class="text-body-md">תפיסת המסוגלות האישית (E)</span></li>
+                <li class="flex items-start gap-3"><span class="material-symbols-outlined text-on-surface-variant text-sm mt-1">radio_button_unchecked</span><span class="text-body-md">מורכב ליישום — דורש התאמה אישית</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- THEORY SELECTION -->
+      <section class="py-20 bg-surface-container-low">
+        <div class="max-w-container-max mx-auto px-margin-mobile">
+          <div class="glass-card p-10 md:p-14 border-2 border-secondary shadow-[0_0_40px_rgba(0,174,239,0.2)] relative overflow-hidden">
+            <div class="absolute -top-16 -left-16 w-56 h-56 bg-secondary/5 rounded-full blur-3xl pointer-events-none" aria-hidden="true"></div>
+            <div class="relative z-10 flex flex-col md:flex-row items-center gap-12">
+              <div class="flex-1">
+                <div class="inline-block px-4 py-1 bg-secondary/20 text-secondary rounded-full text-label-sm text-label-sm mb-4">הבחירה המומלצת</div>
+                <h2 class="font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface mb-6">למה בחרנו במודל הרצברג?</h2>
+                <p class="font-body-lg text-body-lg text-on-surface-variant mb-8">
+                  ניתוח הממצאים ב-YES מראה כי העלאת שכר לבדה אינה מונעת עזיבה.
+                  הנציגים מחפשים משמעות, גיוון ואופק התפתחותי — בדיוק מה שהרצברג מזהה כגורמים מוטיבטורים אמיתיים.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div class="flex items-center gap-3"><span class="material-symbols-outlined text-secondary">verified</span><span class="text-body-md">שיפור חוויית העובד הפנימית</span></div>
+                  <div class="flex items-center gap-3"><span class="material-symbols-outlined text-secondary">verified</span><span class="text-body-md">צמצום שחיקה רגשית</span></div>
+                  <div class="flex items-center gap-3"><span class="material-symbols-outlined text-secondary">verified</span><span class="text-body-md">העשרה עיסוקית מבוססת תוכן</span></div>
+                  <div class="flex items-center gap-3"><span class="material-symbols-outlined text-secondary">verified</span><span class="text-body-md">יצירת זהות ארגונית חזקה</span></div>
+                </div>
+              </div>
+              <div class="text-secondary opacity-80" aria-hidden="true">
+                <span class="material-symbols-outlined" style="font-size: 120px;">task_alt</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SOLUTION -->
+      <section id="solution" class="py-20 px-margin-mobile max-w-container-max mx-auto">
+        <div class="text-center mb-14">
+          <h2 class="font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface mb-3">תכנית העשרת העיסוק</h2>
+          <p class="font-headline-md text-headline-md text-on-surface-variant">חמישה עוגנים לשימור עובדים — מבוסס על הרצברג</p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-gutter">
+          <div class="glass-card p-6 flex flex-col items-center text-center group">
+            <span class="material-symbols-outlined text-secondary text-4xl mb-4 group-hover:scale-110 transition-transform">hub</span>
+            <h4 class="font-headline-md text-headline-md text-on-surface mb-2">גיוון מיומנויות</h4>
+            <p class="text-label-sm text-label-sm text-on-surface-variant">שילוב משימות בקרה לצד מענה טלפוני</p>
+          </div>
+          <div class="glass-card p-6 flex flex-col items-center text-center group">
+            <span class="material-symbols-outlined text-secondary text-4xl mb-4 group-hover:scale-110 transition-transform">assignment_ind</span>
+            <h4 class="font-headline-md text-headline-md text-on-surface mb-2">זהות המשימה</h4>
+            <p class="text-label-sm text-label-sm text-on-surface-variant">טיפול בלקוח מקצה לקצה</p>
+          </div>
+          <div class="glass-card p-6 flex flex-col items-center text-center group">
+            <span class="material-symbols-outlined text-secondary text-4xl mb-4 group-hover:scale-110 transition-transform">stars</span>
+            <h4 class="font-headline-md text-headline-md text-on-surface mb-2">חשיבות המשימה</h4>
+            <p class="text-label-sm text-label-sm text-on-surface-variant">הבנת השפעת השירות על חוויית הצפייה</p>
+          </div>
+          <div class="glass-card p-6 flex flex-col items-center text-center group">
+            <span class="material-symbols-outlined text-secondary text-4xl mb-4 group-hover:scale-110 transition-transform">self_improvement</span>
+            <h4 class="font-headline-md text-headline-md text-on-surface mb-2">אוטונומיה</h4>
+            <p class="text-label-sm text-label-sm text-on-surface-variant">מתן חופש פעולה בפתרון בעיות</p>
+          </div>
+          <div class="glass-card p-6 flex flex-col items-center text-center group">
+            <span class="material-symbols-outlined text-secondary text-4xl mb-4 group-hover:scale-110 transition-transform">quick_phrases</span>
+            <h4 class="font-headline-md text-headline-md text-on-surface mb-2">משוב</h4>
+            <p class="text-label-sm text-label-sm text-on-surface-variant">מערכות דירוג בזמן אמת</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- AI SECTION -->
+      <section id="ai" class="py-20 px-margin-mobile max-w-container-max mx-auto">
+        <h2 class="text-center font-display-lg text-display-lg-mobile md:text-display-lg mb-4 text-on-surface">
+          שילוב בינה מלאכותית (AI) בתהליך
+        </h2>
+        <p class="text-center text-on-surface-variant font-headline-md text-headline-md mb-16">
+          ארבעה שלבים שבהם AI סייע — ואיפה הבקרה האנושית נכנסה
+        </p>
+        <div class="relative">
+          <div class="absolute top-8 left-0 w-full h-px bg-secondary/30 hidden md:block" aria-hidden="true"></div>
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-gutter relative z-10">
+            <div class="flex flex-col items-center text-center">
+              <div class="w-16 h-16 rounded-full bg-surface-container-highest border border-secondary flex items-center justify-center mb-6 shadow-[0_0_15px_rgba(0,174,239,0.3)]">
+                <span class="material-symbols-outlined text-secondary">analytics</span>
+              </div>
+              <h4 class="font-headline-md text-headline-md text-on-surface mb-2">גיבוש הבעיה</h4>
+              <p class="text-on-surface-variant text-label-sm text-label-sm">AI שימש כ"לוח שיחה" לחידוד הגדרת הבעיה</p>
+            </div>
+            <div class="flex flex-col items-center text-center">
+              <div class="w-16 h-16 rounded-full bg-surface-container-highest border border-secondary flex items-center justify-center mb-6 shadow-[0_0_15px_rgba(0,174,239,0.3)]">
+                <span class="material-symbols-outlined text-secondary">smart_toy</span>
+              </div>
+              <h4 class="font-headline-md text-headline-md text-on-surface mb-2">בחינת תאוריות</h4>
+              <p class="text-on-surface-variant text-label-sm text-label-sm">AI סייע בסינון תאוריות רלוונטיות מהחומר</p>
+            </div>
+            <div class="flex flex-col items-center text-center">
+              <div class="w-16 h-16 rounded-full bg-surface-container-highest border border-secondary flex items-center justify-center mb-6 shadow-[0_0_15px_rgba(0,174,239,0.3)]">
+                <span class="material-symbols-outlined text-secondary">school</span>
+              </div>
+              <h4 class="font-headline-md text-headline-md text-on-surface mb-2">הצדקת הבחירה</h4>
+              <p class="text-on-surface-variant text-label-sm text-label-sm">AI עזר לנסח טיעונים — נבחנו ביקורתית</p>
+            </div>
+            <div class="flex flex-col items-center text-center">
+              <div class="w-16 h-16 rounded-full bg-surface-container-highest border border-secondary flex items-center justify-center mb-6 shadow-[0_0_15px_rgba(0,174,239,0.3)]">
+                <span class="material-symbols-outlined text-secondary">support_agent</span>
+              </div>
+              <h4 class="font-headline-md text-headline-md text-on-surface mb-2">בניית פתרון</h4>
+              <p class="text-on-surface-variant text-label-sm text-label-sm">רעיונות ל-Job Enrichment — הותאמו ידנית</p>
+            </div>
+          </div>
+        </div>
+        <div class="mt-14 glass-card p-6 flex items-start gap-4">
+          <span class="material-symbols-outlined text-secondary text-2xl mt-1 shrink-0">info</span>
+          <p class="text-body-md text-on-surface-variant">
+            <strong class="text-on-surface">בקרה אנושית:</strong>
+            כל תוצר AI נבחן ביחס לסיכום הקורס. רק מושגים מהחומר הנלמד נותרו.
+            הניתוח הסופי, הצדקת הבחירה והפתרון היישומי — נכתבו ידנית על ידי הקבוצה.
+          </p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       האתגר
+  ════════════════════════════════════════════ -->
+  <div id="page-challenge" hidden>
+    <main class="pt-32 pb-20 relative overflow-hidden">
+      <div class="orbit-decoration w-[600px] h-[600px] -top-40 -right-40"></div>
+      <div class="orbit-decoration w-[400px] h-[400px] top-1/2 -left-20"></div>
+
+      <header class="max-w-container-max mx-auto px-margin-desktop mb-16 relative z-10 text-center">
+        <h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface mb-6 max-w-4xl mx-auto leading-tight">
+          האתגר: תחלופת עובדים במוקדי השירות
+        </h1>
+        <p class="font-body-lg text-body-lg text-outline max-w-2xl mx-auto">
+          ניתוח אקדמי מעמיק של תופעת ה-Churn בקרב נציגי שירות הלקוחות בחברת YES, והשפעתה על המערך התפעולי והחוויה הצרכנית.
+        </p>
+      </header>
+
+      <div class="max-w-[900px] mx-auto px-6 md:px-0 relative z-10">
+        <article class="glass-card p-8 md:p-16 rounded-xl electric-glow leading-relaxed space-y-12">
+
+          <section id="introduction">
+            <div class="flex items-center gap-4 mb-6">
+              <span class="material-symbols-outlined text-secondary text-3xl">menu_book</span>
+              <h2 class="font-headline-md text-headline-md text-secondary">מבוא ורקע</h2>
+            </div>
+            <div class="font-body-lg text-body-lg text-on-surface-variant space-y-4">
+              <p>תעשיית התקשורת בישראל מתאפיינת בדינמיות גבוהה ותחרות עזה, כאשר מוקדי השירות מהווים את חזית המפגש בין המותג ללקוח. בחברת YES, כמותג המזוהה עם איכות שידור פרימיום, הציפיות מרמת השירות גבוהות במיוחד. עם זאת, האתגר המרכזי העומד בפני חטיבת ניהול המשאב האנושי הוא שיעור תחלופת העובדים הגבוה במוקדים.</p>
+              <p>בחינה של הנתונים האקדמיים מצביעה על כך שתחלופת עובדים אינה רק בעיה לוגיסטית של גיוס מחדש, אלא שחיקה מצטברת של הידע הארגוני ופגיעה ישירה בסטנדרטים של ה-Service Level Agreement (SLA).</p>
+            </div>
+            <div class="article-gradient-line mt-10"></div>
+          </section>
+
+          <section id="data-analysis">
+            <div class="flex items-center gap-4 mb-8">
+              <span class="material-symbols-outlined text-secondary text-3xl">analytics</span>
+              <h2 class="font-headline-md text-headline-md text-secondary">ניתוח נתונים וממצאים</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+              <div class="p-6 border border-secondary/20 rounded-lg bg-white/5">
+                <h3 class="font-headline-md text-headline-md mb-4 text-on-surface">שיעורי עזיבה שנתיים</h3>
+                <div class="h-40 flex items-end gap-2 px-2">
+                  <div class="w-1/4 bg-outline/20 h-full rounded-t"></div>
+                  <div class="w-1/4 bg-secondary/40 h-3/4 rounded-t"></div>
+                  <div class="w-1/4 bg-secondary h-full rounded-t shadow-[0_0_10px_rgba(0,174,239,0.5)]"></div>
+                  <div class="w-1/4 bg-secondary-container h-1/2 rounded-t"></div>
+                </div>
+                <p class="mt-4 font-label-sm text-label-sm text-outline">נתוני 2021-2024: מגמת עלייה במדדי השחיקה</p>
+              </div>
+              <div class="flex flex-col justify-center">
+                <p class="font-body-md text-body-md text-on-surface-variant">
+                  הנתונים מצביעים על כך שמעל ל-40% מנציגי השירות מסיימים את תפקידם בתוך 12 החודשים הראשונים. נקודת השבירה המרכזית מזוהה סביב החודש השביעי, לאחר סיום תקופת ההכשרה וכניסה לשגרת עבודה אינטנסיבית.
+                </p>
+              </div>
+            </div>
+            <img alt="Data visualization dashboard" class="w-full h-64 object-cover rounded-lg border border-secondary/30"
+                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuAH9yzrHZRE0OLG7UUEM1bf4DaEnDXHZrJl9YV-85lBIfvHHp55t7YOHu07LQjqx0TC8F4VFz9PWCt4QOlezaFX7b3Y9e_1CR_zTMVABWcWpAJOSI14OJsg5XoF4Uxin_UY-3QuQuT967-td7FZ1WwMmWtnZxeMX9OK91HHvn1P6VbKS2-Pp7OycZnh7HiMCTw5Kzywxr-KltD7gxjIvpnC4WyQWnefYIXptvqDcuVGpv36IsBBm2YebnCh9OJTj0g0E0bQ2hjWWwQ"/>
+            <div class="article-gradient-line mt-10"></div>
+          </section>
+
+          <section id="core-issues">
+            <div class="flex items-center gap-4 mb-6">
+              <span class="material-symbols-outlined text-secondary text-3xl">report_problem</span>
+              <h2 class="font-headline-md text-headline-md text-secondary">סוגיות ליבה וגורמי שחיקה</h2>
+            </div>
+            <div class="space-y-6">
+              <div class="flex gap-6 items-start">
+                <div class="w-12 h-12 rounded-full border border-secondary flex items-center justify-center shrink-0 text-secondary font-bold">01</div>
+                <div>
+                  <h4 class="font-headline-md text-body-lg font-bold text-on-surface mb-2">עומס קוגניטיבי ורגשי</h4>
+                  <p class="text-outline">נציגים נדרשים לתמרן בין מספר מערכות מידע במקביל לניהול שיחות לקוח טעונות רגשית, מה שמוביל לעייפות החלטה מהירה.</p>
+                </div>
+              </div>
+              <div class="flex gap-6 items-start">
+                <div class="w-12 h-12 rounded-full border border-secondary flex items-center justify-center shrink-0 text-secondary font-bold">02</div>
+                <div>
+                  <h4 class="font-headline-md text-body-lg font-bold text-on-surface mb-2">היעדר אופק קידומי נראה לעין</h4>
+                  <p class="text-outline">התפיסה הרווחת של תפקיד הנציג כתחנת מעבר זמנית מקשה על יצירת נאמנות ארגונית ארוכת טווח.</p>
+                </div>
+              </div>
+              <div class="flex gap-6 items-start">
+                <div class="w-12 h-12 rounded-full border border-secondary flex items-center justify-center shrink-0 text-secondary font-bold">03</div>
+                <div>
+                  <h4 class="font-headline-md text-body-lg font-bold text-on-surface mb-2">פערי טכנולוגיה חווייתיים</h4>
+                  <p class="text-outline">מערכות Legacy מיושנות שאינן מסונכרנות עם ציפיות המשתמש המודרני יוצרות תסכול יומיומי אצל העובד.</p>
+                </div>
+              </div>
+            </div>
+            <div class="article-gradient-line mt-10"></div>
+          </section>
+
+          <section id="impact">
+            <div class="flex items-center gap-4 mb-6">
+              <span class="material-symbols-outlined text-secondary text-3xl">history_toggle_off</span>
+              <h2 class="font-headline-md text-headline-md text-secondary">השפעה ארוכת טווח</h2>
+            </div>
+            <div class="font-body-lg text-body-lg text-on-surface-variant italic border-r-4 border-secondary pr-6 py-4 bg-secondary/5">
+              "העלות האמיתית של תחלופת עובד אינה נמדדת בשכר, אלא באובדן האמון של הלקוח שנתקל בנציג חסר ניסיון."
+            </div>
+            <p class="font-body-lg text-body-lg text-on-surface-variant mt-6">
+              בטווח הארוך, התחלופה הגבוהה מובילה ל"ספירלת ידע שלילית". נציגים מנוסים עוזבים, והכשרת החדשים מתבצעת על ידי נציגים שבעצמם בעלי ותק נמוך. תופעה זו פוגעת ביכולת של YES לספק פתרונות טכניים מורכבים במגע ראשון (First Contact Resolution), ובכך מעמיסה עוד יותר על המערכת.
+            </p>
+          </section>
+        </article>
+      </div>
+    </main>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       תיאוריות
+  ════════════════════════════════════════════ -->
+  <div id="page-theories" hidden>
+    <main class="flex-grow pt-20 hero-gradient">
+
+      <section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-16 md:py-20 text-center">
+        <h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-secondary mb-6">תיאוריות וניהול: חיבור אקדמי למציאות הארגונית</h1>
+        <p class="font-body-lg text-body-lg text-on-surface-variant max-w-3xl mx-auto">
+          ניתוח מעמיק ומורחב של תיאוריות ניהוליות והשפעתן הישירה על בעיית שימור העובדים בחברת YES. כיצד מודלים אקדמיים הופכים לכלי עבודה פרקטיים לשינוי ארגוני רחב היקף.
+        </p>
+      </section>
+
+      <!-- Herzberg -->
+      <section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-12">
+        <div class="glass-card rounded-xl p-8 md:p-12 overflow-hidden relative">
+          <div class="flex flex-col gap-10">
+            <div class="flex flex-col md:flex-row items-start gap-8 border-b border-secondary/20 pb-10">
+              <div class="md:w-1/3">
+                <div class="theory-icon-bg w-24 h-24 flex items-center justify-center rounded-full mb-4">
+                  <span class="material-symbols-outlined text-secondary text-5xl">psychology</span>
+                </div>
+                <h2 class="font-headline-md text-headline-md text-secondary mb-4 leading-tight">תיאוריית שני הגורמים של הרצברג</h2>
+                <p class="text-on-surface-variant font-body-md">
+                  הרצברג טען כי שביעות רצון ואי-שביעות רצון אינם שני קצוות של אותו רצף, אלא שני ממדים נפרדים המושפעים מגורמים שונים לחלוטין. במוקדי השירות של YES, ההפרדה הזו היא המפתח להבנת תופעת הנטישה.
+                </p>
+              </div>
+              <div class="md:w-2/3 grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="space-y-4">
+                  <div class="flex items-center gap-3">
+                    <span class="material-symbols-outlined text-secondary">cleaning_services</span>
+                    <h3 class="font-bold text-on-surface text-lg">גורמי היגיינה (חיצוניים)</h3>
+                  </div>
+                  <p class="text-on-surface-variant text-sm leading-relaxed">גורמים הקשורים לסביבת העבודה. קיומם אינו יוצר מוטיבציה, אך היעדרם גורם לאי-שביעות רצון עמוקה.</p>
+                  <ul class="space-y-3">
+                    <li class="bg-white/5 p-3 rounded-lg border-r-2 border-secondary/40"><span class="font-bold block text-secondary text-xs mb-1">שכר ותנאים:</span><span class="text-sm">ב-YES, שכר הבסיס נתפס כנמוך ביחס למאמץ, מה שיוצר "תחושת הישרדות".</span></li>
+                    <li class="bg-white/5 p-3 rounded-lg border-r-2 border-secondary/40"><span class="font-bold block text-secondary text-xs mb-1">מדיניות חברה:</span><span class="text-sm">נהלים נוקשים במוקד השירות יוצרים תחושת כבילות וחוסר גמישות.</span></li>
+                    <li class="bg-white/5 p-3 rounded-lg border-r-2 border-secondary/40"><span class="font-bold block text-secondary text-xs mb-1">תנאים פיזיים:</span><span class="text-sm">סביבת המוקד (Open Space) רועשת ומתישה פיזית ומנטלית.</span></li>
+                  </ul>
+                </div>
+                <div class="space-y-4">
+                  <div class="flex items-center gap-3">
+                    <span class="material-symbols-outlined text-secondary">trending_up</span>
+                    <h3 class="font-bold text-on-surface text-lg">גורמי מוטיבציה (פנימיים)</h3>
+                  </div>
+                  <p class="text-on-surface-variant text-sm leading-relaxed">גורמים הקשורים לתוכן העבודה. אלו הם הגורמים שיוצרים מחויבות ארוכת טווח ורצון להצטיין.</p>
+                  <ul class="space-y-3">
+                    <li class="bg-white/5 p-3 rounded-lg border-r-2 border-secondary/60"><span class="font-bold block text-secondary text-xs mb-1">הכרה והישגים:</span><span class="text-sm">עובדי YES מדווחים כי הצלחות נתפסות כ"מובנות מאליהן" בעוד כשלונות מודגשים.</span></li>
+                    <li class="bg-white/5 p-3 rounded-lg border-r-2 border-secondary/60"><span class="font-bold block text-secondary text-xs mb-1">אחריות וקידום:</span><span class="text-sm">חוסר באופק קידום ברור לעובדים זוטרים מוביל לתחושת "מבוי סתום".</span></li>
+                    <li class="bg-white/5 p-3 rounded-lg border-r-2 border-secondary/60"><span class="font-bold block text-secondary text-xs mb-1">עניין בעיסוק:</span><span class="text-sm">שיחות שירות חוזרות וטכניות הופכות למונוטוניות ללא אתגר אינטלקטואלי.</span></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div class="glass-card p-6 rounded-lg text-center border-secondary/10 bg-secondary/5"><h4 class="text-secondary font-bold mb-2">הקשר לנטישה</h4><p class="text-sm text-on-surface-variant italic">"עובדים עוזבים בגלל היגיינה גרועה, אך הם לא נשארים רק בגלל היגיינה טובה."</p></div>
+              <div class="glass-card p-6 rounded-lg text-center border-secondary/10 bg-secondary/5"><h4 class="text-secondary font-bold mb-2">תובנת YES</h4><p class="text-sm text-on-surface-variant">שיפור שכר (היגיינה) יפחית את הכעס, אך רק העשרת התפקיד (מוטיבציה) תפסיק את הנטישה.</p></div>
+              <div class="glass-card p-6 rounded-lg text-center border-secondary/10 bg-secondary/5"><h4 class="text-secondary font-bold mb-2">המלצה אקדמית</h4><p class="text-sm text-on-surface-variant">מעבר מניהול של "בקרה ומדידה" לניהול של "העצמה ומשמעות".</p></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Vroom -->
+      <section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-12">
+        <div class="glass-card rounded-xl p-8 md:p-12 relative overflow-hidden">
+          <div class="flex flex-col gap-12">
+            <div class="text-center max-w-2xl mx-auto">
+              <div class="theory-icon-bg w-20 h-20 flex items-center justify-center rounded-full mx-auto mb-4">
+                <span class="material-symbols-outlined text-secondary text-4xl">insights</span>
+              </div>
+              <h2 class="font-headline-md text-headline-md text-secondary mb-4">תיאוריית הציפיות של ורום</h2>
+              <p class="text-on-surface-variant font-body-md">ורום טוען כי מוטיבציה אינה מצב רגשי בלבד, אלא תוצאה של חישוב רציונלי שכל עובד מבצע. המשוואה ב-YES צריכה להראות תוצאה חיובית בכל אחד מהשלבים הבאים:</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8 relative">
+              <div class="hidden md:block absolute top-1/2 left-1/3 -translate-y-1/2 text-secondary/30"><span class="material-symbols-outlined text-4xl">arrow_back</span></div>
+              <div class="hidden md:block absolute top-1/2 left-2/3 -translate-y-1/2 text-secondary/30"><span class="material-symbols-outlined text-4xl">arrow_back</span></div>
+              <div class="glass-card p-8 rounded-xl border-t-4 border-secondary flex flex-col items-center text-center transform transition hover:scale-105">
+                <span class="font-display-lg text-secondary/20 mb-2">E</span>
+                <h3 class="font-bold text-secondary text-xl mb-3">ציפייה (Expectancy)</h3>
+                <p class="text-xs text-on-surface mb-4 font-semibold">מאמץ ← ביצוע</p>
+                <p class="text-sm text-on-surface-variant leading-relaxed">האם העובד מאמין שאם ישקיע מאמץ הוא יצליח לעמוד ביעדים? ב-YES, מערכות איטיות פוגעות בציפייה זו.</p>
+                <div class="mt-auto pt-6 border-t border-white/5 w-full"><span class="text-[10px] uppercase tracking-wider text-secondary">מילת המפתח: מסוגלות</span></div>
+              </div>
+              <div class="glass-card p-8 rounded-xl border-t-4 border-secondary flex flex-col items-center text-center transform transition hover:scale-105">
+                <span class="font-display-lg text-secondary/20 mb-2">I</span>
+                <h3 class="font-bold text-secondary text-xl mb-3">קישוריות (Instrumentality)</h3>
+                <p class="text-xs text-on-surface mb-4 font-semibold">ביצוע ← תגמול</p>
+                <p class="text-sm text-on-surface-variant leading-relaxed">האם הביצוע יגרור תגמול? אם עובד מצטיין אך אינו מקבל בונוס או הכרה, הקישוריות נשברת והמוטיבציה קורסת.</p>
+                <div class="mt-auto pt-6 border-t border-white/5 w-full"><span class="text-[10px] uppercase tracking-wider text-secondary">מילת המפתח: אמון</span></div>
+              </div>
+              <div class="glass-card p-8 rounded-xl border-t-4 border-secondary flex flex-col items-center text-center transform transition hover:scale-105">
+                <span class="font-display-lg text-secondary/20 mb-2">V</span>
+                <h3 class="font-bold text-secondary text-xl mb-3">ערכיות (Valence)</h3>
+                <p class="text-xs text-on-surface mb-4 font-semibold">ערך התגמול</p>
+                <p class="text-sm text-on-surface-variant leading-relaxed">האם התגמול בכלל חשוב לעובד? ב-YES, יש לבחון האם יום גיבוש חשוב לעובד יותר מעוד יום חופש או כסף.</p>
+                <div class="mt-auto pt-6 border-t border-white/5 w-full"><span class="text-[10px] uppercase tracking-wider text-secondary">מילת המפתח: רלוונטיות</span></div>
+              </div>
+            </div>
+            <div class="bg-secondary/5 p-6 rounded-xl border border-secondary/20 text-center">
+              <p class="text-secondary font-bold text-xl mb-2">M = E × I × V</p>
+              <p class="text-on-surface-variant text-sm">בגלל שמדובר במכפלה, אם אחד המרכיבים שואף לאפס - המוטיבציה כולה תתאפס. עובדי YES חייבים להאמין בכולם בו זמנית.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Synthesis Table -->
+      <section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-12">
+        <h2 class="font-headline-md text-headline-md text-secondary mb-8 text-center">השוואה וסינתזה ניהולית מורחבת</h2>
+        <div class="overflow-x-auto glass-card rounded-xl">
+          <table class="w-full text-right border-collapse">
+            <thead>
+              <tr class="bg-secondary/10 border-b border-secondary/30">
+                <th class="p-6 font-bold text-secondary">קריטריון להשוואה</th>
+                <th class="p-6 font-bold text-secondary">תיאוריית הרצברג (תוכן)</th>
+                <th class="p-6 font-bold text-secondary">תיאוריית ורום (תהליך)</th>
+                <th class="p-6 font-bold text-secondary">יישום ב-YES</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-secondary/10">
+              <tr><td class="p-6 font-bold bg-white/5">מיקוד עיקרי</td><td class="p-6 text-on-surface-variant">סוגי הצרכים המסופקים (מה מניע?)</td><td class="p-6 text-on-surface-variant">תהליך החשיבה והציפיות (איך זה מניע?)</td><td class="p-6 text-on-surface-variant">הבנת חוסר העניין בתפקיד מול חוסר האמון במערכת</td></tr>
+              <tr><td class="p-6 font-bold bg-white/5">מקור המוטיבציה</td><td class="p-6 text-on-surface-variant">גורמים פנימיים (צמיחה, עניין)</td><td class="p-6 text-on-surface-variant">ציפייה רציונלית לתגמול בעל ערך</td><td class="p-6 text-on-surface-variant">שילוב בין שיפור טכנולוגי (E) להעשרה אישית</td></tr>
+              <tr><td class="p-6 font-bold bg-white/5">גישה לפתרון</td><td class="p-6 text-on-surface-variant">שינוי מבני של הגדרת התפקיד</td><td class="p-6 text-on-surface-variant">שינוי מערך התמריצים והשקיפות</td><td class="p-6 text-on-surface-variant">בניית מסלול קריירה שקוף ומאתגר</td></tr>
+              <tr><td class="p-6 font-bold bg-white/5">השפעה לטווח זמן</td><td class="p-6 text-on-surface-variant">ארוך טווח (שינוי גישה בסיסי)</td><td class="p-6 text-on-surface-variant">קצר עד בינוני (שיפור ביצועים מיידי)</td><td class="p-6 text-on-surface-variant">שימוש בורום לייצוב מיידי ובהרצברג לשימור רב-שנתי</td></tr>
+              <tr><td class="p-6 font-bold bg-white/5">תפקיד המנהל</td><td class="p-6 text-on-surface-variant">מעצב תפקידים ומאמן</td><td class="p-6 text-on-surface-variant">מגדיר יעדים ומספק משוב שקוף</td><td class="p-6 text-on-surface-variant">הכשרת ראשי צוותים בניהול "גמיש" ומותאם אישית</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Managerial Implications -->
+      <section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-12 mb-20">
+        <div class="glass-card rounded-xl p-8 md:p-12 border-r-8 border-secondary">
+          <h2 class="font-headline-md text-headline-md text-secondary mb-8 flex items-center gap-4">
+            <span class="material-symbols-outlined text-4xl">assignment_turned_in</span>
+            תובנות ניהוליות ומסקנות יישומיות (Synthesis)
+          </h2>
+          <div class="grid md:grid-cols-2 gap-12">
+            <div class="space-y-6">
+              <p class="text-on-surface-variant leading-relaxed">הסינתזה בין שתי התיאוריות מעלה כי משבר הנטישה ב-YES אינו נובע מגורם יחיד, אלא משילוב של "היגיינה לקויה" (הרצברג) המייצרת תסכול, יחד עם "שבירת ציפיות" (ורום) המייצרת אדישות. כדי לפתור את הבעיה, על ההנהלה לפעול בשני צירים מקבילים:</p>
+              <div class="bg-white/5 p-6 rounded-lg border border-secondary/10">
+                <h4 class="font-bold text-secondary mb-3">הציר המבני (מערכתי)</h4>
+                <p class="text-sm text-on-surface-variant">שיפור הכלים הטכנולוגיים כדי להעלות את ה-Expectancy (E). כשהמערכות עובדות, העובד מרגיש שהמאמץ שלו נושא פרי. במקביל, יש "לנקות" גורמי היגיינה שליליים כמו בירוקרטיה עודפת.</p>
+              </div>
+            </div>
+            <div class="space-y-6">
+              <div class="bg-white/5 p-6 rounded-lg border border-secondary/10">
+                <h4 class="font-bold text-secondary mb-3">הציר האנושי (פסיכולוגי)</h4>
+                <p class="text-sm text-on-surface-variant">העשרת התפקיד (Job Enrichment) על פי הרצברג. הפיכת מוקד השירות למרכז פתרון בעיות יצירתי ולא רק מענה לשיחות. פעולה זו מעלה את ה-Valence (V) מכיוון שהעבודה עצמה הופכת לתגמול.</p>
+              </div>
+              <div class="bg-secondary/10 p-6 rounded-lg border-dashed border border-secondary/40">
+                <h4 class="font-bold text-on-surface mb-2">מסקנה סופית:</h4>
+                <p class="text-sm text-on-surface-variant">המודל המוצע בפרק הבא (הפתרון) נשען על תובנות אלו: יצירת סביבת עבודה "היגיינית" יותר המבוססת על טכנולוגיה חכמה, המאפשרת לעובדים לצמוח כמוטיבטורים אישיים.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       הפתרון
+  ════════════════════════════════════════════ -->
+  <div id="page-solution" hidden>
+    <main class="pt-20 geometric-bg min-h-screen">
+
+      <section class="relative py-20 px-margin-mobile md:px-margin-desktop overflow-hidden">
+        <div class="max-w-container-max mx-auto relative z-10">
+          <h1 class="font-display-lg text-display-lg md:text-display-lg mb-6 max-w-3xl leading-tight">
+            הפתרון המוצע: <span class="text-secondary">העשרת עיסוק</span>
+          </h1>
+          <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl leading-relaxed">
+            גישה חדשנית לייעול תהליכי הלמידה והביצועים האקדמיים בחטיבת הניהול, המבוססת על מודל מאפייני התפקיד לשיפור המוטיבציה והפרודוקטיביות.
+          </p>
+        </div>
+        <div class="absolute top-1/2 -left-20 w-96 h-96 bg-secondary/5 rounded-full blur-[100px] pointer-events-none"></div>
+      </section>
+
+      <!-- Bento Grid -->
+      <section class="py-12 px-margin-mobile md:px-margin-desktop">
+        <div class="max-w-container-max mx-auto">
+          <div class="flex items-center gap-4 mb-12">
+            <h2 class="font-headline-md text-headline-md">תוכנית ההעשרה - 5 עקרונות המפתח</h2>
+            <div class="flex-grow line-fade"></div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+            <div class="glass-card glow-border p-8 rounded-xl flex flex-col gap-4">
+              <div class="w-12 h-12 rounded-lg bg-secondary/10 flex items-center justify-center"><span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">identity_platform</span></div>
+              <h3 class="font-headline-md text-headline-md text-secondary">זהות המשימה</h3>
+              <p class="text-on-surface-variant">הבניית תהליכים מא' ועד ת', המאפשרת לנציג לראות את התמונה המלאה ואת התוצר הסופי של עבודתו.</p>
+            </div>
+            <div class="glass-card glow-border p-8 rounded-xl flex flex-col gap-4">
+              <div class="w-12 h-12 rounded-lg bg-secondary/10 flex items-center justify-center"><span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">star</span></div>
+              <h3 class="font-headline-md text-headline-md text-secondary">משמעות המשימה</h3>
+              <p class="text-on-surface-variant">חיבור הפעולות היומיומיות להשפעה האסטרטגית של חטיבת הניהול האקדמי ב-YES.</p>
+            </div>
+            <div class="glass-card glow-border p-8 rounded-xl flex flex-col gap-4">
+              <div class="w-12 h-12 rounded-lg bg-secondary/10 flex items-center justify-center"><span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">settings_accessibility</span></div>
+              <h3 class="font-headline-md text-headline-md text-secondary">אוטונומיה</h3>
+              <p class="text-on-surface-variant">מתן חופש פעולה בקבלת החלטות מקצועיות וניהול זמן עצמאי לשיפור תחושת האחריות.</p>
+            </div>
+            <div class="md:col-span-2 glass-card glow-border p-8 rounded-xl flex flex-col md:flex-row gap-8 items-center">
+              <div class="md:w-1/3">
+                <div class="w-12 h-12 rounded-lg bg-secondary/10 flex items-center justify-center mb-4"><span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">forum</span></div>
+                <h3 class="font-headline-md text-headline-md text-secondary">משוב שוטף</h3>
+                <p class="text-on-surface-variant">מערכת בקרה מובנית המאפשרת למידה מטעויות ושיפור מתמיד בזמן אמת.</p>
+              </div>
+              <div class="md:w-2/3 h-48 w-full rounded-lg overflow-hidden relative">
+                <img alt="Data visualization" class="w-full h-full object-cover opacity-50 grayscale hover:grayscale-0 transition-all duration-500"
+                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5LGz7gDaXXqjIb_u10NR42tT3EAJBVTI1EqGJeymq-JVNcb3OOTRMVuzWxL7sIqGaKVbM452UDYTcH3pYDh3CJczIYwCiYUoD0xH6ueEPiewLJe0EbN5y-oGZRWTlsGtVC3Id7h6r_dWGTSkgCj6bon6fVs6esWRG7_BH29wml-9JEnOShToT7d-amOOj-ikqh9ud8kB1OZDJvR1jRBEyZKYMlbQBFGyy1fKKLEMHbbU7fLKYQraaApxgumnFIxs4MQG8wtgyB4I"/>
+              </div>
+            </div>
+            <div class="glass-card glow-border p-8 rounded-xl flex flex-col gap-4">
+              <div class="w-12 h-12 rounded-lg bg-secondary/10 flex items-center justify-center"><span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">diversity_3</span></div>
+              <h3 class="font-headline-md text-headline-md text-secondary">מגוון מיומנויות</h3>
+              <p class="text-on-surface-variant">שימוש במגוון רחב של יכולות קוגניטיביות וטכנולוגיות למניעת שחיקה ושעמום.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Long-form -->
+      <section class="py-20 bg-surface-container-low/30">
+        <div class="max-w-[800px] mx-auto px-margin-mobile">
+          <div class="glass-card p-12 rounded-xl shadow-2xl relative">
+            <div class="absolute top-0 right-0 w-24 h-24 border-r-2 border-t-2 border-secondary/20 rounded-tr-xl"></div>
+            <h2 class="font-headline-md text-headline-md mb-8 border-b border-secondary/20 pb-4">ניתוח מעמיק ומבנה היישום</h2>
+            <article class="space-y-6 text-on-surface-variant leading-relaxed">
+              <p class="font-body-lg text-body-lg text-on-surface">העשרת עיסוק (Job Enrichment) אינה רק תוספת של משימות, אלא שינוי מבני ואיכותי בדרך שבה נציגים חווים את פעילותם. התוכנית המוצעת בוחנת את הממשק שבין הצרכים האנושיים לבין היעדים העסקיים של YES Satellite TV.</p>
+              <h4 class="font-bold text-secondary">שלב א': מיפוי פערים ותכנון מחדש</h4>
+              <p>בשלב הראשון, יתבצע ניתוח של תיאורי התפקיד הקיימים. נזהה מוקדים של "חזרתיות יתר" ופערים בין רמת המיומנות של הנציג לבין האתגר המקצועי המוצב בפניו. המטרה היא להעביר את הדגש מבקרה חיצונית לניהול עצמי.</p>
+              <div class="my-8 p-6 bg-secondary/5 border-r-4 border-secondary rounded-l-lg italic">"המוטיבציה הפנימית צומחת במקום שבו העובד מרגיש שכישוריו באים לידי ביטוי בצורה משמעותית."</div>
+              <h4 class="font-bold text-secondary">שלב ב': שילוב טכנולוגיית AI</h4>
+              <p>כחלק מהעשרת העיסוק, הנציגים יוכשרו לעבוד עם כלי בינה מלאכותית מתקדמים. ה-AI לא יחליף את העובד, אלא ישמש כ"מכפיל כוח" המאפשר להתפנות ממשימות אדמיניסטרטיביות לטובת ניתוח נתונים קריטי וקבלת החלטות מורכבות.</p>
+              <h4 class="font-bold text-secondary">שלב ג': הערכת אימפקט</h4>
+              <p>מדידת ההצלחה תתבצע באמצעות מדדים כמותיים (KPIs) ואיכותיים. נבחן את רמת שביעות הרצון, את הירידה באחוזי התחלופה ואת השיפור הניכר באיכות השירות.</p>
+            </article>
+            <div class="mt-12 flex justify-end gap-4">
+              <span class="text-outline font-label-sm">Academic Ref: YES-AM-2024</span>
+              <span class="text-outline font-label-sm">Confidential</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Roadmap -->
+      <section class="py-20 px-margin-mobile md:px-margin-desktop">
+        <div class="max-w-container-max mx-auto">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 class="font-display-lg text-display-lg mb-8">מפת דרכים ומדדי הצלחה</h2>
+              <div class="space-y-8">
+                <div class="flex gap-6"><div class="text-secondary font-display-lg opacity-30">01</div><div><h4 class="font-bold text-lg mb-2">שיפור פרודוקטיביות</h4><p class="text-on-surface-variant">צפי לעלייה של 25% ביעילות הביצועים תוך שישה חודשים.</p></div></div>
+                <div class="flex gap-6"><div class="text-secondary font-display-lg opacity-30">02</div><div><h4 class="font-bold text-lg mb-2">שימור הון אנושי</h4><p class="text-on-surface-variant">הפחתת שיעור התחלופה בקרב נציגים מצטיינים באמצעות העלאת רמת האתגר.</p></div></div>
+                <div class="flex gap-6"><div class="text-secondary font-display-lg opacity-30">03</div><div><h4 class="font-bold text-lg mb-2">קיימות ארגונית</h4><p class="text-on-surface-variant">יצירת מודל עבודה שניתן לשכפול במחלקות נוספות בחברה.</p></div></div>
+              </div>
+            </div>
+            <div class="relative group">
+              <div class="absolute -inset-1 bg-gradient-to-r from-secondary to-transparent rounded-xl blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
+              <div class="relative glass-card p-2 rounded-xl overflow-hidden aspect-video">
+                <img alt="Strategy meeting" class="w-full h-full object-cover rounded-lg"
+                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQ3In9pBXUVt-YpZxNxmo0d8OmFtaQ30rvB_-VCHRDQt0_MMMXOyy1i56KziyHoyGF4iciX5VbWrB1BGISq75HZzxisgeIX-STQHz92iuOfPDeodN9l1yQF71VLqTxc4tMsljfZVVDVqWid8GBjfQ9_bqsPfbL0XBg_ImdeacyYZUTzBdLdbS26xQ1cpDX3ee_imwGB6xFKmrT0gu4OeKOv9ax698IpOKTzj7RBeT_7eUoZ7HhEKmMmSpNEnwEP71UWJYCXbqPmpU"/>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       בינה מלאכותית
+  ════════════════════════════════════════════ -->
+  <div id="page-ai" hidden>
+    <main class="flex-grow pt-20">
+
+      <!-- Hero -->
+      <section class="relative h-[614px] flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+          <img class="w-full h-full object-cover opacity-40"
+               src="https://lh3.googleusercontent.com/aida-public/AB6AXuAybV1I3Mfv3KGytM0dFp70WqgAamIXwls-K_w27tgfu-9aN6vf4INH4it9j8vqbUE6KouSfRl_VlpR51GzeAUYhZtJtUMWpjdml_9tRzAUQnfdvQrqPzzJk1RsaEVYo637YM162rhbUlZrNAjqLfxSzIXue6uqUCleWgRTfpS_wKMCfteu7L0Mcf8AoRVuQIt5Scb7B4si54fyBQ0XsfK7_TQ7qufnPc3P_WOE-GVSqhDAs0osBKM_7BtO8lVmYOCD1JRk3DRW97E"
+               alt="AI neural pathways"/>
+          <div class="absolute inset-0 bg-gradient-to-b from-background/0 via-background/60 to-background"></div>
+        </div>
+        <div class="relative z-10 text-center max-w-4xl px-margin-mobile">
+          <h1 class="font-display-lg text-display-lg md:text-[64px] mb-4 text-white drop-shadow-lg">שילוב בינה מלאכותית (AI) בתהליך</h1>
+          <p class="font-body-lg text-body-lg text-secondary max-w-2xl mx-auto">מערכות לומדות בשירות מצוינות אקדמית ותפעולית בשידור הלווייני</p>
+        </div>
+      </section>
+
+      <!-- Content -->
+      <div class="max-w-container-max mx-auto px-margin-desktop py-12">
+
+        <!-- Bento Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-gutter mb-20">
+          <div class="md:col-span-8 glass-card p-8 rounded-xl electric-glow flex flex-col justify-end min-h-[400px] relative overflow-hidden group">
+            <div class="absolute top-0 right-0 p-8"><span class="material-symbols-outlined text-secondary text-4xl">neurology</span></div>
+            <div class="relative z-10">
+              <h3 class="font-headline-md text-headline-md text-secondary mb-3">ניתוח סנטימנט (Sentiment Analysis)</h3>
+              <p class="font-body-md text-body-md text-on-surface-variant max-w-xl">זיהוי רגשות בזמן אמת בשיחות שירות. המערכת מנתחת את טון הדיבור ובחירת המילים כדי להעניק לנציג כלים להתמודדות מותאמת אישית, תוך מזעור חיכוכים ושיפור חווית הלקוח באופן פרואקטיבי.</p>
+            </div>
+          </div>
+          <div class="md:col-span-4 glass-card p-8 rounded-xl flex flex-col items-center text-center justify-center hover:bg-secondary/5 transition-all">
+            <span class="material-symbols-outlined text-secondary text-5xl mb-4" style="font-variation-settings: 'FILL' 1;">auto_videocam</span>
+            <h3 class="font-headline-md text-headline-md text-white mb-2">Automated Pilot</h3>
+            <p class="font-label-sm text-label-sm text-outline">ניהול שידורים אוטונומי</p>
+          </div>
+          <div class="md:col-span-4 glass-card p-8 rounded-xl flex flex-col items-center text-center justify-center hover:bg-secondary/5 transition-all">
+            <span class="material-symbols-outlined text-secondary text-5xl mb-4">school</span>
+            <h3 class="font-headline-md text-headline-md text-white mb-2">למידה מותאמת</h3>
+            <p class="font-label-sm text-label-sm text-outline">מסלולי הכשרה מבוססי ביצועים</p>
+          </div>
+          <div class="md:col-span-8 glass-card p-8 rounded-xl electric-glow flex items-center gap-8 group">
+            <div class="hidden lg:block w-1/3">
+              <img class="w-full h-48 object-cover rounded-lg opacity-60 group-hover:opacity-100 transition-opacity"
+                   src="https://lh3.googleusercontent.com/aida-public/AB6AXuBmWb_-AFjJUvrOH38OGenuF5FnKr-FFa2bZ3TgbozuCGRIpyKLnlxMKmTM5--RPKFqGIcrkphpoNIiPOH1bDOIqCCFoQJBMmOuSbnUVvV_Je0fRzz0DXemZsQFS0HsFCpr10eLnrAXcD81NesjE5swDhggzWwHy2VBgQvqrg5KnaRIiJd0L0Jqz0oN8K3Dhzgty3-afGfA3fF9gaEPDeQd3thR2chZ1_ozoIEkvCHtXIEfDWxTZlZdILk1Q1CgEOQQ7BC2mRIZrDI"
+                   alt="Predictive analytics"/>
+            </div>
+            <div class="flex-grow">
+              <h3 class="font-headline-md text-headline-md text-secondary mb-3">חיזוי נטישה (Predictive Churn)</h3>
+              <p class="font-body-md text-body-md text-on-surface-variant">אלגוריתמים מתקדמים המזהים דפוסי התנהגות המעידים על כוונת עזיבה עוד לפני שהלקוח פונה. המערכת מאפשרת בניית הצעות ערך ממוקדות המשמרות את נאמנות הלקוח לאורך זמן.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="fading-line mb-20"></div>
+
+        <!-- Long-form -->
+        <div class="max-w-3xl mx-auto mb-20">
+          <article class="prose prose-invert prose-blue max-w-none">
+            <header class="mb-12 border-r-4 border-secondary pr-6">
+              <h2 class="font-display-lg-mobile text-display-lg-mobile text-white mb-2">סקירה טכנולוגית: הדור הבא של הניהול</h2>
+              <p class="font-label-sm text-label-sm text-secondary uppercase tracking-widest">מאמר אקדמי / דוח ניהולי 2024</p>
+            </header>
+            <div class="space-y-8 font-body-md text-body-md text-on-surface/90 leading-relaxed text-justify">
+              <p>בעולם התוכן והשידורים הדינמי של ימינו, הבינה המלאכותית אינה עוד כלי עזר טכני, אלא עמוד השדרה של האסטרטגיה התפעולית. השילוב של AI במערכי השירות של YES מאפשר לנו לעבור ממודל של תגובה (Reactive) למודל של חיזוי ומניעה (Proactive).</p>
+              <p>הטמעת מודלים של עיבוד שפה טבעית (NLP) מאפשרת למערכות שלנו להבין לא רק את ה"מה" אלא גם את ה"איך". כאשר לקוח מתקשר, המערכת מנתחת עשרות פרמטרים בשניות - החל מהיסטוריית הצפייה ועד למצב הרוח הנוכחי - ומגישה לנציג את הפתרון המדויק ביותר עוד לפני שנאמרה המילה הראשונה.</p>
+              <div class="glass-card my-12 p-8 rounded-lg relative">
+                <h4 class="font-headline-md text-headline-md text-secondary mb-4">שיקולים טכניים ואתיים</h4>
+                <ul class="space-y-4">
+                  <li class="flex items-start gap-4"><span class="material-symbols-outlined text-secondary mt-1">security</span><div><strong class="text-white block">פרטיות מידע:</strong><span class="text-on-surface-variant">הקפדה על אנונימיזציה של נתונים אישיים בתהליכי אימון המודלים.</span></div></li>
+                  <li class="flex items-start gap-4"><span class="material-symbols-outlined text-secondary mt-1">balance</span><div><strong class="text-white block">הטיה אלגוריתמית:</strong><span class="text-on-surface-variant">ביצוע בקרות תקופתיות למניעת אפליה או הטיות במתן הצעות שירות.</span></div></li>
+                  <li class="flex items-start gap-4"><span class="material-symbols-outlined text-secondary mt-1">visibility</span><div><strong class="text-white block">שקיפות המערכת:</strong><span class="text-on-surface-variant">יכולת הסבר (Explainability) לכל החלטה המתקבלת על ידי ה-AI.</span></div></li>
+                </ul>
+              </div>
+              <p>לסיכום, המהפכה שאנו מובילים אינה רק טכנולוגית, היא תרבותית. אנו מעצימים את המשאב האנושי באמצעות כלים מתקדמים, המאפשרים לנציגינו להתמקד בפתרון בעיות מורכבות ובבניית קשר אנושי איכותי, בעוד ה-AI מטפל באופטימיזציה ובניתוח הנתונים המסיביים.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       FOOTER — אחיד לכל הדפים (לפי דף הבית)
   ════════════════════════════════════════════ -->
   <footer class="w-full py-8 bg-surface-container-lowest border-t border-secondary/20">
     <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop flex flex-col md:flex-row-reverse items-center justify-between gap-4">
-
       <div class="flex items-center gap-3">
         <span style="font-family:Assistant,sans-serif;font-weight:900;letter-spacing:-0.05em;"
               class="text-secondary text-2xl">YES</span>
-        <span class="text-on-surface-variant text-body-md">עבודתם של שקד , שוהם אמיר בן ויובל</span>
+        <span class="text-on-surface-variant text-body-md">עבודם של שקד, שוהם אמיר בן ויובל</span>
       </div>
-
       <p class="text-body-md text-on-surface-variant opacity-70">
         © פרויקט גמר במבוא לניהול 2026 | עמק יזרעאל | כל הזכויות שמורות
       </p>
-
     </div>
   </footer>
+
+  <!-- ═══════════════════════════════════════════
+       JAVASCRIPT — ניווט בין דפים
+  ════════════════════════════════════════════ -->
+  <script>
+    const pages = ['home', 'challenge', 'theories', 'solution', 'ai'];
+
+    function showPage(pageId) {
+      // הסתר את כל הדפים
+      pages.forEach(id => {
+        const el = document.getElementById('page-' + id);
+        if (el) el.hidden = true;
+      });
+
+      // הצג את הדף הנבחר
+      const target = document.getElementById('page-' + pageId);
+      if (target) target.hidden = false;
+
+      // עדכן active state בניווט — desktop
+      document.querySelectorAll('.nav-link:not(.mobile-nav)').forEach(a => {
+        const isActive = a.dataset.page === pageId;
+        a.classList.toggle('text-secondary', isActive);
+        a.classList.toggle('border-b-2', isActive);
+        a.classList.toggle('border-secondary', isActive);
+        a.classList.toggle('pb-1', isActive);
+        a.classList.toggle('text-on-surface-variant', !isActive);
+      });
+
+      // עדכן active state בניווט — mobile
+      document.querySelectorAll('.mobile-nav').forEach(a => {
+        const isActive = a.dataset.page === pageId;
+        a.classList.toggle('text-secondary', isActive);
+        a.classList.toggle('border-r-2', isActive);
+        a.classList.toggle('border-secondary', isActive);
+        a.classList.toggle('pr-3', isActive);
+        a.classList.toggle('text-on-surface-variant', !isActive);
+      });
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      // סגור תפריט מובייל אחרי בחירה
+      const mobileMenu = document.getElementById('mobile-menu');
+      mobileMenu.classList.remove('open');
+    }
+
+    // הפעל ניווט בלחיצה
+    document.querySelectorAll('.nav-link').forEach(a => {
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        showPage(a.dataset.page);
+      });
+    });
+
+    // כפתור תפריט מובייל
+    document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+      document.getElementById('mobile-menu').classList.toggle('open');
+    });
+  </script>
 
 </body>
 </html>
